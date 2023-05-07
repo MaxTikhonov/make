@@ -1,0 +1,258 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: var(--line-h);
+}
+
+a {
+  text-decoration: none;
+  cursor: url(/images/finger.svg), pointer;
+  color: #000;
+}
+
+a:hover {
+  color: #3E29E3;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+:root {
+  --font-s: 14px;
+  --line-h: 22px;
+  --main-width: 1312px;
+}
+
+@font-face {
+  font-family: 'Graphik';
+  src: url("Graphik-Regular-Web.eot");
+  src: url("Graphik-Regular-Web.eot?#iefix") format("embedded-opentype"),
+    url("Graphik-Regular-Web.woff2") format("woff2"),
+    url("Graphik-Regular-Web.woff") format("woff"),
+    url("Graphik-Regular-Web.ttf") format("truetype");
+}
+
+@font-face {
+  font-weight: 500;
+  font-style: normal;
+  font-family: 'Graphik';
+  src: url("../fonts/Graphik-Medium-Web.eot");
+  src: url("../fonts/Graphik-Medium-Web.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Graphik-Medium-Web.woff2") format("woff2"),
+    url("../fonts/Graphik-Medium-Web.woff") format("woff"),
+    url("../fonts/Graphik-Medium-Web.ttf") format("truetype");
+}
+
+
+@font-face {
+  font-weight: 700;
+  font-style: normal;
+  font-family: 'Graphik';
+  src: url("../fonts/Graphik-Bold-Web.eot");
+  src: url("../fonts/Graphik-Bold-Web.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Graphik-Bold-Web.woff2") format("woff2"),
+    url("../fonts/Graphik-Bold-Web.woff") format("woff"),
+    url("../fonts/Graphik-Bold-Web.ttf") format("truetype");
+}
+
+body {
+  font-family: 'Graphik';
+  height: 100%;
+  font-size: var(--font-s);
+  color: #000;
+  background-color: #F2F2F2;
+}
+
+
+html,
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.content {
+  margin-top: 214px;
+  padding: 20px 10px;
+  grid-area: content;
+  background-color: bisque;
+}
+
+.fio {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: wheat;
+  padding-left: 10px;
+}
+
+
+.header {
+  z-index: 1;
+  grid-area: header;
+  background-color: antiquewhite;
+}
+
+.header.fixed {
+  position: fixed;
+  height: 100px;
+  width: var(--main-width);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.layout {
+  width: var(--main-width);
+  overflow: hidden;
+  margin: 0px auto;
+  min-height: 100%;
+  display: grid;
+  grid-template-areas: "header header header" "sidebar content content" "sidebar footer footer";
+  grid-template-columns: 2fr 1fr 9fr;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+
+.logo-and-fio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+  margin-top: 214px;
+  background-color: bisque;
+}
+
+.nav-item:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+
+.sidebar {
+  display: flex;
+  z-index: 0;
+  margin-top: 100px;
+  position: fixed;
+  height: 100%;
+  grid-area: sidebar;
+  z-index: 1;
+}
+
+/* .header {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.wrapper {
+ min-height: 100%;
+ width: 1312px;
+ overflow: hidden;
+ margin: 0px auto;
+}
+.nav {
+  background-color: bisque;
+}
+.nav-item:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+.gap {
+  background-color: blue;
+}
+.something {
+ display: grid;
+ grid-template-columns: 2fr 1fr 9fr;
+ gap: 32px;
+ margin-top: 58px;
+}
+.header {
+  height: 60px;
+  background-color:brown;
+}
+.main {
+  background-color: aqua;
+}
+.button:hover {
+ cursor: url(/images/finger.svg), pointer;
+}
+.logo-and-fio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+.logo-img {
+  padding-top: 3px;
+  width: 56px;
+  height: 56px;
+}
+.fio {
+  display: flex;
+  flex-direction: column;
+} */
+@media(max-width: 1200px) {
+  :root {
+    --main-width: 938px;
+  }
+
+  .something {
+    grid-template-columns: 2fr 88px 5fr;
+  }
+}
+
+@media(max-width: 736px) {
+  :root {
+    --main-width: 424px;
+  }
+
+  .gap {
+    display: none;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .something {
+    grid-template-columns: 4fr;
+    gap: 24px;
+  }
+}
