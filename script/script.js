@@ -17,5 +17,21 @@ function changeFontSize() {
  if (windowW < 738) {
   document.body.style.setProperty('--line-h', '30px')
  }
+ document.querySelectorAll("a[href^='#']").forEach(link => {
+  console.log(link)
+  link.addEventListener("click", function (e) {
+   e.preventDefault();
+   let href = this.getAttribute("href").substring(1);
+   const scrollTarget = document.getElementById(href);
+   const topOffset = document.querySelector(".nav").offsetHeight;
+   const elementPosition = scrollTarget.getBoundingClientRect().top;
+   const offsetPosition = elementPosition - topOffset - 120;
+
+   window.scrollBy({
+    top: offsetPosition,
+    behavior: "smooth"
+   });
+  });
+ });
 }
 window.onload = changeFontSize;
