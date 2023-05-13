@@ -182,7 +182,18 @@ li {
   grid-column: 7/-1;
 }
 
+
+.demonstration-button {
+  width: 148px;
+  height: 56px;
+  color: #FFFFFF;
+  border-radius: 30px;
+  transition: .2s;
+  background: linear-gradient(45deg, #DD80ED 0%, #3D28E3 100%);
+}
+
 .demonstration-error {
+  color: #E80F3B;
   margin-top: .7rem;
   height: 24px;
 }
@@ -201,6 +212,10 @@ li {
   border-bottom: 4px solid #3E29E3;
 }
 
+.demonstration-input-error {
+  border-bottom: 4px solid #E80F3B;
+}
+
 .demonstration-input-hover {
   border-bottom: 2px solid #3E29E3;
 }
@@ -211,6 +226,10 @@ li {
 
 .demonstration-placeholder {
   height: 24px;
+}
+
+.demonstration-placeholder-error {
+  color: #E80F3B;
 }
 
 .description-of-styles {
@@ -263,16 +282,24 @@ li {
 
 .fallinglist-arrow {
   position: absolute;
-  top: 7px;
+  top: 12px;
   right: 2px;
   width: 7px;
   height: 7px;
+  transition: .2s;
   border-top: 2px solid #3E29E3;
   border-right: 2px solid #3E29E3;
 }
 
 .fallinglist-arrow-bottom {
+  transform-origin: center center;
   transform: rotate(135deg);
+}
+
+.fallinglist-arrow-top {
+  top: 15px;
+  transform-origin: center center;
+  transform: rotate(-45deg);
 }
 
 .fallinglist-block1 {
@@ -294,7 +321,12 @@ li {
 }
 
 .fallinglist-placeholder {
+  padding: 8px 0px;
   border-bottom: 2px solid #AEADAE;
+}
+
+.fallinglist-placeholder-active {
+  border-bottom: 2px solid #3E29E3;
 }
 
 .fallinglist-placeholder:hover {
@@ -304,15 +336,35 @@ li {
 .fallinglist-setofitems {
   width: 100%;
   position: absolute;
-  top: 22px;
+  display: none;
+  top: 40px;
   left: 0;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
   transition: .1s;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
 }
 
+.fallinglist-setofitems-item {
+  padding: 8px 15px;
+  color: #1B1B1B;
+}
+
+.fallinglist-setofitems-item-blue {
+  color: #3D28E1;
+}
+
+.fallinglist-setofitems-item:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+
+.fallinglist-setofitems-item:hover {
+  color: #FFFFFF;
+  background-color: #3E29E3;
+}
+
 .fallinglist-wrapper-placeholder-and-arrow {
   position: relative;
+  background-color: #F2F2F2;
 }
 
 .fio {
@@ -512,12 +564,96 @@ li {
 
 .menu-info-and-logo {
   position: absolute;
-  top: 8px;
+  top: 1%;
   left: 8px;
   height: 98%;
   width: 56%;
   background-color: #fff;
+  z-index: 3;
+}
+
+.menu-info-and-logo-link {
+  position: absolute;
+  left: 22%;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-info-and-logo__arrow {
+  position: absolute;
+  overflow: hidden;
+  top: -4px;
+  right: -4px;
+  width: 7px;
+  height: 7px;
+  padding-bottom: 6px;
+  background-color: #FFFFFF;
+  border-top: 2px solid #3E29E3;
+  border-right: 2px solid #3E29E3;
   z-index: 2;
+}
+
+.menu-info-and-logo__squareandarrow {
+  background-color: #FFFFFF;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #3E29E3;
+  z-index: 1;
+}
+
+.menu-info-and-logo-link__link {
+  font-weight: 500;
+  color: #3E29E3;
+  margin-left: 5%;
+}
+
+.menu-info-and-logo-link-circle {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.menu-info-and-logo-link-circle:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+
+.menu-info-and-logo__wrapper {
+  display: flex;
+  margin: 24px 54px;
+  width: 90%;
+}
+
+.menu-info-and-logo__phone {
+  margin-top: 40px;
+}
+
+
+.menu-info-and-logo__logo {
+  height: 100%;
+  width: 20%;
+}
+
+.menu-info-and-logo__description {
+  margin-top: 38px;
+}
+
+.menu-info-and-logo__fio {
+  margin-top: 54px;
+}
+
+.menu-info-and-logo__info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  height: 100%;
+  width: 70%;
 }
 
 .nav {
@@ -530,11 +666,13 @@ li {
 }
 
 .p-lead-d {
+
   font-size: var(--p-lead-d);
   line-height: calc(var(--p-lead-d) + 8px);
 }
 
 .p-big-text-d {
+  font-weight: 500;
   font-size: var(--p-big-text-d);
   line-height: calc(var(--p-big-text-d) + 8px);
 }
@@ -706,6 +844,10 @@ li {
     grid-template-columns: repeat(var(--width-column-p), minmax(56px, 88px));
   }
 
+  .menu-info-and-logo {
+    width: 76%;
+  }
+
   .sidebar {
     grid-column: 1/3;
   }
@@ -820,6 +962,10 @@ li {
     grid-template-areas: "header header" "content content" "footer footer";
     grid-template-columns: repeat(var(--width-column-m), minmax(56px, 88px));
     gap: var(--gap-m);
+  }
+
+  .menu-info-and-logo {
+    width: 97.5%;
   }
 
   .sidebar {
