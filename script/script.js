@@ -27,9 +27,31 @@ const elemsOfDocument = {
  demonstrationError: '',
  fallinglistSetOfItems: [],
  fallinglistArrow: '',
+ inputC: [],
+ inputR: [],
  menuCross: '',
  placeholderAndArrowOfFallingList: '',
  toShowSpecificFallinglistSetofitems: ''
+}
+function isCheckedInputC() {
+ elemsOfDocument.inputC.forEach((item) => {
+  if (item.checked) {
+   item.nextElementSibling.classList.add('checkmark_blue');
+  }
+  else {
+   item.nextElementSibling.classList.remove('checkmark_blue');
+  }
+ })
+}
+function isCheckedInputR() {
+ elemsOfDocument.inputR.forEach((item) => {
+  if (item.checked) {
+   item.nextElementSibling.classList.add('checkmark_blue');
+  }
+  else {
+   item.nextElementSibling.classList.remove('checkmark_blue');
+  }
+ })
 }
 function clickToAccordeonPlaceholder(e) {
  let check = e.target.parentNode.nextElementSibling.classList.contains('accordeon-text-block');
@@ -216,11 +238,21 @@ function init() {
  elemsOfDocument.fallinglistSetOfItems = document.querySelector('.fallinglist-setofitems');
  elemsOfDocument.descriptionOfStylesTextItemDesktop = document.querySelector('.description-of-styles-text__item-desktop');
  elemsOfDocument.descriptionOfStylesTextItemPhone = document.querySelector('.description-of-styles-text__item-phone');
+ elemsOfDocument.descriptionOfStylesTextItemDesktop.addEventListener('click', setDesktopTypographyToDocument);
+ elemsOfDocument.descriptionOfStylesTextItemPhone.addEventListener('click', setPhoneTypographyToDocument);
  objOfImportantVars.windowW = window.innerWidth;
  elemsOfDocument.burger = document.querySelector('.burger');
  elemsOfDocument.menuCross = document.querySelector('.menu-cross');
  elemsOfDocument.arrOfInputs = document.querySelectorAll('.demonstration-input');
  elemsOfDocument.demonstrationError = elemsOfDocument.arrOfInputs[0].nextElementSibling;
+ elemsOfDocument.inputC = document.querySelectorAll('.input-c');
+ elemsOfDocument.inputR = document.querySelectorAll('.input-r');
+ elemsOfDocument.inputC.forEach((item) => {
+  item.addEventListener('change', isCheckedInputC);
+ })
+ elemsOfDocument.inputR.forEach((item) => {
+  item.addEventListener('change', isCheckedInputR);
+ })
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('mouseenter', mouseEnterToFallinglist);
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('mouseout', mouseOutToFallinglist);
  elemsOfDocument.accordeonPlaceholders.forEach((item) => {
