@@ -423,7 +423,7 @@ li {
 }
 
 .demonstration-checkbox {
-  margin: 10px;
+  margin: 5px;
 }
 
 .demonstration-checkbox-label {
@@ -693,7 +693,6 @@ li {
 
 
 .layout {
-  overflow: hidden;
   min-width: 1072px;
   max-width: 1312px;
   margin: 0px auto;
