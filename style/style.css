@@ -99,6 +99,82 @@ li {
   list-style: none;
 }
 
+.accordeon {
+  display: grid;
+  grid-column: 1/-1;
+  grid-template-columns: repeat(9, minmax(60px, 80px));
+  gap: var(--gap-d);
+}
+
+.accordeon-text {
+  border-bottom: 2px solid #3E29E3;
+  display: none;
+}
+
+.accordeon-text-block {
+  display: block;
+}
+
+.accordeon-arrow {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  width: 7px;
+  height: 7px;
+  transition: .2s;
+  border-top: 2px solid #3E29E3;
+  border-right: 2px solid #3E29E3;
+}
+
+.accordeon-arrow-bottom {
+  transform-origin: center center;
+  transform: rotate(135deg);
+}
+
+.accordeon-arrow-top {
+  top: 15px;
+  transform-origin: center center;
+  transform: rotate(-45deg);
+}
+
+.accordeon-block {
+  display: grid;
+  grid-column: 1/-1;
+}
+
+.accordeon-main {
+  display: grid;
+  grid-column: 1/-1;
+  grid-template-columns: repeat(9, minmax(60px, 80px));
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: var(--gap-d);
+}
+
+.accordeon-placeholder {
+  font-weight: 500;
+  color: #7D7D7D;
+  padding: 8px 0px;
+  border-bottom: 1px solid #AEADAE;
+}
+
+.accordeon-placeholder-hover {
+  color: #1B1B1B;
+  border-bottom: 1px solid #3E29E3;
+}
+
+.accordeon-placeholder-active {
+  color: #3E29E3;
+  border-bottom: none;
+}
+
+.accordeon-placeholder:hover {
+  cursor: url(/images/finger.svg), pointer;
+}
+
+.accordeon-placeholder-and-arrow {
+  position: relative;
+}
+
 .block {
   display: grid;
   grid-column: 1/7;
@@ -184,6 +260,7 @@ li {
 
 
 .demonstration-button {
+  margin-top: 20px;
   width: 148px;
   height: 56px;
   color: #FFFFFF;
@@ -201,6 +278,10 @@ li {
 
 .demonstration-button-unactive {
   background: #CBCBCC;
+}
+
+.demonstration-checkbox-label {
+  display: flex;
 }
 
 .demonstration-error {
@@ -236,6 +317,7 @@ li {
 }
 
 .demonstration-placeholder {
+  color: #7D7D7D;
   height: 24px;
 }
 
@@ -791,7 +873,14 @@ li {
     --main-width: 928px;
   }
 
-  .block {
+  .accordeon {
+    grid-template-columns: repeat(6, minmax(56px, 88px));
+    gap: var(--gap-d);
+    grid-column: 1/-1;
+  }
+
+  .block:not(:first-child) {
+    margin-top: 3.71rem;
     grid-column: 1/6;
   }
 
@@ -899,7 +988,14 @@ li {
     --main-width: 424px;
   }
 
-  .block {
+  .accordeon {
+    grid-column: 1/-1;
+    grid-template-columns: repeat(var(--width-column-m), minmax(56px, 88px));
+    gap: var(--gap-m);
+  }
+
+  .block:not(:first-child) {
+    margin-top: 1.5rem;
     grid-column: 1/-1;
   }
 

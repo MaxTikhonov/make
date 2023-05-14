@@ -15,6 +15,9 @@ const objOfImportantVars = {
  changableChoice: ''
 }
 const elemsOfDocument = {
+ accordeonTexts: [],
+ accordeonArrows: [],
+ accordeonPlaceholders: [],
  arrOfButtons: [],
  arrOfButtonsExceptUnactive: [],
  arrOfInputs: [],
@@ -28,16 +31,39 @@ const elemsOfDocument = {
  placeholderAndArrowOfFallingList: '',
  toShowSpecificFallinglistSetofitems: ''
 }
+function clickToAccordeonPlaceholder(e) {
+ let check = e.target.parentNode.nextElementSibling.classList.contains('accordeon-text-block');
+ if (!check) {
+  e.target.nextElementSibling.classList.add('accordeon-arrow-top');
+  e.target.classList.add('accordeon-placeholder-active');
+  e.target.parentNode.nextElementSibling.classList.add('accordeon-text-block');
+ }
+ else if (check) {
+  e.target.nextElementSibling.classList.remove('accordeon-arrow-top');
+  e.target.classList.remove('accordeon-placeholder-active');
+  e.target.parentNode.nextElementSibling.classList.remove('accordeon-text-block');
+ }
+}
+function mouseEnterAccordeonPlaceholder(e) {
+ e.target.classList.add('accordeon-placeholder-hover');
+}
+function mouseOutAccordeonPlaceholder(e) {
+ e.target.classList.remove('accordeon-placeholder-hover');
+}
 function mouseEnterToButton(e) {
+ e.target.previousElementSibling.innerText = 'Ховер';
  e.target.classList.add('demonstration-button-hover');
 }
 function mouseOutToButton(e) {
+ e.target.previousElementSibling.innerText = '';
  e.target.classList.remove('demonstration-button-hover');
 }
 function mousedownToButton(e) {
+ e.target.previousElementSibling.innerText = 'Нажатие';
  e.target.classList.add('demonstration-button-active');
 }
 function mouseUpToButton(e) {
+ e.target.previousElementSibling.innerText = '';
  e.target.classList.remove('demonstration-button-active');
 }
 function mouseEnterToFallinglist(e) {
@@ -181,6 +207,9 @@ function init() {
  collsOfDTypography.collectionOfPBigTextDesktop = document.querySelectorAll('.p-big-text-d');
  collsOfDTypography.collectionOfPCommonTextDesktop = document.querySelectorAll('.p-common-text-d');
  collsOfDTypography.collectionOfPAuxiliaryTextDesktop = document.querySelectorAll('.p-auxiliary-d');
+ elemsOfDocument.accordeonArrows = document.querySelectorAll('.accordeon-arrow');
+ elemsOfDocument.accordeonPlaceholders = document.querySelectorAll('.accordeon-placeholder');
+ elemsOfDocument.accordeonTexts = document.querySelectorAll('.accordeon-text');
  elemsOfDocument.arrOfButtons = document.querySelectorAll('.demonstration-button');
  elemsOfDocument.placeholderAndArrowOfFallingList = document.querySelector('.fallinglist-wrapper-placeholder-and-arrow');
  elemsOfDocument.fallinglistArrow = elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-arrow');
@@ -194,6 +223,11 @@ function init() {
  elemsOfDocument.demonstrationError = elemsOfDocument.arrOfInputs[0].nextElementSibling;
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('mouseenter', mouseEnterToFallinglist);
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('mouseout', mouseOutToFallinglist);
+ elemsOfDocument.accordeonPlaceholders.forEach((item) => {
+  item.addEventListener('mouseenter', mouseEnterAccordeonPlaceholder);
+  item.addEventListener('mouseout', mouseOutAccordeonPlaceholder);
+  item.addEventListener('click', clickToAccordeonPlaceholder);
+ })
  elemsOfDocument.arrOfButtons.forEach((item) => {
   if (item.classList.contains('demonstration-button-unactive')) {
 
