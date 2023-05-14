@@ -8,12 +8,6 @@ const collsOfDTypography = {
  collectionOfPCommonTextDesktop: [],
  collectionOfPAuxiliaryTextDesktop: []
 }
-const objOfChoices = {
- firstChoice: 'Первый стул',
- secondChoice: 'Второй стул',
- thirdChoice: 'Третий стул',
- fourthChoice: 'Теорема Эскобара'
-}
 const objOfImportantVars = {
  inFocus: false,
  inputValue: '',
@@ -22,6 +16,7 @@ const objOfImportantVars = {
 }
 const elemsOfDocument = {
  arrOfButtons: [],
+ arrOfButtonsExceptUnactive: [],
  arrOfInputs: [],
  burger: '',
  descriptionOfStylesTextItemDesktop: '',
@@ -33,15 +28,17 @@ const elemsOfDocument = {
  placeholderAndArrowOfFallingList: '',
  toShowSpecificFallinglistSetofitems: ''
 }
-function validateInput() {
- let valueOfInput = elemsOfDocument.arrOfInputs[0].value;
- const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
- if (!EMAIL_REGEXP.test(valueOfInput)) {
-  elemsOfDocument.demonstrationError.innerText = 'Введите корректный e-mail';
- }
- else {
-  elemsOfDocument.demonstrationError.innerText = '';
- }
+function mouseEnterToButton(e) {
+ e.target.classList.add('demonstration-button-hover');
+}
+function mouseOutToButton(e) {
+ e.target.classList.remove('demonstration-button-hover');
+}
+function mousedownToButton(e) {
+ e.target.classList.add('demonstration-button-active');
+}
+function mouseUpToButton(e) {
+ e.target.classList.remove('demonstration-button-active');
 }
 function mouseEnterToFallinglist(e) {
  e.target.classList.add('fallinglist-placeholder-active');
@@ -50,6 +47,18 @@ function mouseOutToFallinglist(e) {
  e.target.classList.remove('fallinglist-placeholder-active');
 }
 function changeChoiceInFallinglist(e) {
+ if (objOfImportantVars.changableChoice != e.target) {
+  objOfImportantVars.changableChoice = e.target;
+  objOfImportantVars.changableChoice.classList.add('fallinglist-setofitems-item-blue');
+  let arrOfItems = elemsOfDocument.fallinglistSetOfItems.querySelectorAll('.fallinglist-setofitems-item');
+  arrOfItems.forEach((item) => {
+   if (objOfImportantVars.changableChoice == item) {
+   }
+   else {
+    item.classList.remove('fallinglist-setofitems-item-blue');
+   }
+  })
+ }
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').innerText = e.target.innerText;
  elemsOfDocument.fallinglistArrow.classList.remove('fallinglist-arrow-top');
  elemsOfDocument.fallinglistSetOfItems.style.display = 'none';
@@ -183,11 +192,22 @@ function init() {
  elemsOfDocument.menuCross = document.querySelector('.menu-cross');
  elemsOfDocument.arrOfInputs = document.querySelectorAll('.demonstration-input');
  elemsOfDocument.demonstrationError = elemsOfDocument.arrOfInputs[0].nextElementSibling;
- elemsOfDocument.arrOfButtons.forEach((item) => {
-  item.addEventListener('click', validateInput);
- })
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('mouseenter', mouseEnterToFallinglist);
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('mouseout', mouseOutToFallinglist);
+ elemsOfDocument.arrOfButtons.forEach((item) => {
+  if (item.classList.contains('demonstration-button-unactive')) {
+
+  }
+  else {
+   elemsOfDocument.arrOfButtonsExceptUnactive.push(item);
+  }
+ })
+ elemsOfDocument.arrOfButtonsExceptUnactive.forEach((item) => {
+  item.addEventListener('mouseenter', mouseEnterToButton);
+  item.addEventListener('mouseout', mouseOutToButton);
+  item.addEventListener('mousedown', mousedownToButton);
+  item.addEventListener('mouseup', mouseUpToButton);
+ })
  elemsOfDocument.placeholderAndArrowOfFallingList.querySelector('.fallinglist-placeholder').addEventListener('click', function (e) {
   elemsOfDocument.fallinglistArrow.classList.add('fallinglist-arrow-top');
   this.parentNode.nextElementSibling.style.display = 'block';
